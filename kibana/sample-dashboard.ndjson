@@ -1,0 +1,48 @@
+{"_id":"logs-index-pattern","_type":"index-pattern","_source":{"title":"logs-*","timeFieldName":"@timestamp"}}
+
+{"_id":"geoip-map","_type":"visualization","_source":{
+  "title":"🌍 Login Attempts by Country",
+  "visState":"{\"title\":\"Geo-IP Map\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Scaled Circle Markers\",\"isDesaturated\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"geoip.country_name\",\"size\":5}}]}",
+  "uiStateJSON":"{}",
+  "description":"Shows login attempts by country using Geo-IP enrichment",
+  "version":1,
+  "kibanaSavedObjectMeta":{"searchSourceJSON":"{\"index\":\"logs-index-pattern\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"}
+}}
+
+{"_id":"failed-ssh-logins","_type":"visualization","_source":{
+  "title":"🔐 Top 10 Failed SSH Logins",
+  "visState":"{\"title\":\"Top 10 Failed SSH Logins\",\"type\":\"table\",\"params\":{\"perPage\":10},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\"},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"client.keyword\",\"size\":10}}]}",
+  "uiStateJSON":"{}",
+  "description":"Shows top IPs with failed SSH logins",
+  "version":1,
+  "kibanaSavedObjectMeta":{"searchSourceJSON":"{\"index\":\"logs-index-pattern\",\"query\":{\"language\":\"lucene\",\"query\":\"event.action:failed\"},\"filter\":[]}"}
+}}
+
+{"_id":"error-trends","_type":"visualization","_source":{
+  "title":"📈 Error Trends Over Time",
+  "visState":"{\"title\":\"Error Trends\",\"type\":\"line\",\"params\":{\"interpolate\":\"linear\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\"},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"min_doc_count\":1}}]}",
+  "uiStateJSON":"{}",
+  "description":"Trend of error logs over time",
+  "version":1,
+  "kibanaSavedObjectMeta":{"searchSourceJSON":"{\"index\":\"logs-index-pattern\",\"query\":{\"language\":\"lucene\",\"query\":\"level:error\"},\"filter\":[]}"}
+}}
+
+{"_id":"asset-log-distribution","_type":"visualization","_source":{
+  "title":"🖥 Asset-wise Log Distribution",
+  "visState":"{\"title\":\"Asset-wise Distribution\",\"type\":\"pie\",\"params\":{\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\"},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"host.keyword\",\"size\":5}}]}",
+  "uiStateJSON":"{}",
+  "description":"Shows log volume distribution across assets",
+  "version":1,
+  "kibanaSavedObjectMeta":{"searchSourceJSON":"{\"index\":\"logs-index-pattern\",\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"}
+}}
+
+{"_id":"clm-dashboard","_type":"dashboard","_source":{
+  "title":"🔎 Centralized Log Management Dashboard",
+  "hits":0,
+  "description":"Overview dashboard for centralized log management project",
+  "panelsJSON":"[{\"panelIndex\":\"1\",\"gridData\":{\"x\":0,\"y\":0,\"w\":12,\"h\":10,\"i\":\"1\"},\"version\":\"7.14.0\",\"type\":\"visualization\",\"id\":\"geoip-map\"},{\"panelIndex\":\"2\",\"gridData\":{\"x\":12,\"y\":0,\"w\":12,\"h\":10,\"i\":\"2\"},\"version\":\"7.14.0\",\"type\":\"visualization\",\"id\":\"failed-ssh-logins\"},{\"panelIndex\":\"3\",\"gridData\":{\"x\":0,\"y\":10,\"w\":12,\"h\":10,\"i\":\"3\"},\"version\":\"7.14.0\",\"type\":\"visualization\",\"id\":\"error-trends\"},{\"panelIndex\":\"4\",\"gridData\":{\"x\":12,\"y\":10,\"w\":12,\"h\":10,\"i\":\"4\"},\"version\":\"7.14.0\",\"type\":\"visualization\",\"id\":\"asset-log-distribution\"}]",
+  "optionsJSON":"{\"useMargins\":true,\"hidePanelTitles\":false}",
+  "version":1,
+  "timeRestore":false,
+  "kibanaSavedObjectMeta":{"searchSourceJSON":"{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"}
+}}
