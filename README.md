@@ -25,21 +25,34 @@ This setup provides security teams with **40% improved threat visibility** and h
 ## 📂 Repository Structure  
 ```
 centralized-log-management-elk/
-│── README.md
-│── docker-compose.yml # ELK stack setup with Docker
-│── logstash/
-│ ├── logstash.conf # Sample pipeline (Grok, mutate, geoip)
-│ └── pipelines.yml
-│── kibana/
-│ ├── sample-dashboard.ndjson # Exported Kibana dashboards
-│── sample-logs/
-│ ├── apache_logs.log # Example log data
-│ └── syslog.log
-│── scripts/
-│ └── ingest_test_data.sh # Script to simulate log ingestion
+├── README.md
+├── docker-compose.yml                  # ELK stack setup with Docker
+│
+├── logstash/
+│   ├── logstash.conf                   # Sample pipeline (Grok, mutate, geoip)
+│   ├── pipelines.yml                   # Main pipeline config
+│   └── logstash-splunk.conf            # Optional Splunk HEC output pipeline
+│
+├── kibana/
+│   └── sample-dashboard.ndjson         # Exported Kibana dashboards
+│
+├── elasticsearch/
+│   └── ilm-policy.json                 # Index Lifecycle Management policy (log retention)
+│
+├── sample-logs/
+│   ├── apache_logs.log                 # Example Apache log data
+│   └── syslog.log                      # Example Syslog data
+│
+├── scripts/
+│   └── ingest_test_data.sh             # Script to simulate log ingestion
+│
+└── docs/
+    ├── architecture-diagram.png        # Centralized logging architecture
+    └── kibana-dashboard.png            # Screenshot of sample Kibana dashboard
+
 ```
 
----
+
 
 ---
 
@@ -83,6 +96,9 @@ Example dashboard visualizations include:
 📈 Error trends over time
 
 🖥 Asset-wise log distribution
+
+![Kibana Dashboard](docs/kibana-dashboard.png)
+
 
 ---
 ### Logstash Pipelines
@@ -143,14 +159,15 @@ output {
 ```
 ---
 
-##📖 Learning Outcomes
+## 📖 Learning Outcomes  
+- Deployed a production-ready ELK stack for centralized security monitoring  
+- Built Logstash pipelines with Grok, mutate, and Geo-IP enrichment  
+- Designed real-time dashboards in Kibana for threat visibility  
+- Implemented compliance-driven log retention policies with ILM  
+- Integrated ELK with external SIEMs (Splunk) for hybrid monitoring
+---
+## 🔮 Future Enhancements  
+- Add alerting with ElastAlert or Kibana Alerting  
+- Integrate with cloud-native log sources (AWS CloudTrail, Azure Monitor)  
+- Automate deployment with Ansible or Terraform  
 
-Hands-on deployment of ELK stack for security monitoring
-
-Building Logstash pipelines with Grok, mutate, and Geo-IP enrichment
-
-Designing real-time dashboards in Kibana
-
-Implementing compliance-driven log retention policies
-
-Integrating ELK with external SIEMs like Splunk
