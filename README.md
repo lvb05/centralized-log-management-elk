@@ -122,9 +122,9 @@ Example ILM policy (`ilm-policy.json`):
 
 ---
 
-#### 📡 Splunk Integration (Optional)  
-```markdown
-## 📡 Splunk Integration (Optional)  
+### 📡 Splunk Integration (Optional)  
+
+
 For hybrid environments, logs can be forwarded to **Splunk SIEM**.  
 
 - Enable the **Logstash Splunk HEC output plugin**  
